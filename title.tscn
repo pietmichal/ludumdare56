@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlcd73aavhunw"]
+
+[ext_resource type="Script" path="res://title.gd" id="1_dat1c"]
+[ext_resource type="Texture2D" uid="uid://cc83rsaue7dpr" path="res://titlescreen.png" id="1_taglk"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_dat1c")
+
+[node name="Titlescreen" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+texture = ExtResource("1_taglk")

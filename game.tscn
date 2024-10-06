@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bi5tdu587c72s"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_a23mf"]
+[ext_resource type="Texture2D" uid="uid://c1ny4splxv38o" path="res://pointer2.png" id="2_exgyi"]
+[ext_resource type="Script" path="res://player.gd" id="2_i5g3n"]
+[ext_resource type="PackedScene" uid="uid://c13t0agej86kh" path="res://tiny_creature.tscn" id="3_ebsrv"]
+[ext_resource type="Texture2D" uid="uid://1mhre3c2cyws" path="res://tip.png" id="6_ef5pm"]
+[ext_resource type="PackedScene" uid="uid://dhsy4bv6qiuwk" path="res://deadbody.tscn" id="6_vqmqd"]
+[ext_resource type="PackedScene" uid="uid://dbbrpg1w8a25a" path="res://swordguy.tscn" id="7_hnnwj"]
+
+[node name="Node2D" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_a23mf")
+
+[node name="Player" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.27451)
+z_index = 4096
+texture = ExtResource("2_exgyi")
+script = ExtResource("2_i5g3n")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="TinyCreature" parent="." instance=ExtResource("3_ebsrv")]
+position = Vector2(28, -21)
+
+[node name="TinyCreature2" parent="." instance=ExtResource("3_ebsrv")]
+position = Vector2(1, -23)
+
+[node name="TinyCreature3" parent="." instance=ExtResource("3_ebsrv")]
+position = Vector2(-32, -21)
+
+[node name="Tip" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.509804)
+position = Vector2(-3, 57)
+texture = ExtResource("6_ef5pm")
+
+[node name="Deadbody" parent="." instance=ExtResource("6_vqmqd")]
+position = Vector2(1, 147)
+
+[node name="Deadbody2" parent="." instance=ExtResource("6_vqmqd")]
+position = Vector2(-273, -11)
+
+[node name="Deadbody3" parent="." instance=ExtResource("6_vqmqd")]
+position = Vector2(265, -1)
+
+[node name="Deadbody4" parent="." instance=ExtResource("6_vqmqd")]
+position = Vector2(-1, -152)
+
+[node name="Swordguy" parent="." instance=ExtResource("7_hnnwj")]
+position = Vector2(385, -263)

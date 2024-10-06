@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://7k0mhs1qykaj"]
+
+[ext_resource type="Texture2D" uid="uid://bd2waw3nat156" path="res://puddle.png" id="1_kthf3"]
+
+[node name="Puddle" type="Sprite2D"]
+z_index = -4095
+y_sort_enabled = true
+position = Vector2(194, -50)
+scale = Vector2(0.611111, 0.575)
+texture = ExtResource("1_kthf3")

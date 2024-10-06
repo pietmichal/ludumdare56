@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvt4k4mo2hfgg"]
+
+[ext_resource type="Script" path="res://boss.gd" id="1_0fuae"]
+[ext_resource type="PackedScene" uid="uid://dq60k4c80pq3i" path="res://hit_box.tscn" id="3_0jti7"]
+[ext_resource type="PackedScene" uid="uid://hayphtg0rjj5" path="res://hurt_box.tscn" id="4_3k3kx"]
+[ext_resource type="Texture2D" uid="uid://bu8tp2oi5r1lv" path="res://boss1.png" id="4_aq8f0"]
+[ext_resource type="Texture2D" uid="uid://ddloi4quip6g4" path="res://boss2.png" id="5_wa6bk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_edg7m"]
+radius = 12.0
+
+[node name="Boss" type="RigidBody2D"]
+z_index = 4090
+y_sort_enabled = true
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_0fuae")
+
+[node name="Boss1" type="Sprite2D" parent="."]
+position = Vector2(65, -2)
+texture = ExtResource("4_aq8f0")
+
+[node name="Boss2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-57, -38)
+texture = ExtResource("5_wa6bk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 5)
+scale = Vector2(7, 7)
+shape = SubResource("CircleShape2D_edg7m")
+
+[node name="HitBox" parent="." instance=ExtResource("3_0jti7")]
+position = Vector2(-18, 26)
+scale = Vector2(10, 10)
+collision_layer = 8
+
+[node name="HurtBox" parent="." instance=ExtResource("4_3k3kx")]
+position = Vector2(15, -5)
+scale = Vector2(7, 7)
+collision_layer = 16
+collision_mask = 2

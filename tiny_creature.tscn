@@ -1,0 +1,94 @@
+[gd_scene load_steps=26 format=3 uid="uid://c13t0agej86kh"]
+
+[ext_resource type="Texture2D" uid="uid://ci4m4wxcnrby1" path="res://tc1.png" id="2_qiaxk"]
+[ext_resource type="Script" path="res://tiny_creature.gd" id="2_qlq18"]
+[ext_resource type="PackedScene" uid="uid://dq60k4c80pq3i" path="res://hit_box.tscn" id="3_tj3ar"]
+[ext_resource type="PackedScene" uid="uid://hayphtg0rjj5" path="res://hurt_box.tscn" id="4_4a14p"]
+[ext_resource type="AudioStream" uid="uid://uy4klwkgrti2" path="res://pop.ogg" id="5_d7uur"]
+[ext_resource type="AudioStream" uid="uid://pjgsrnm4jtqm" path="res://nom.ogg" id="6_8ujbe"]
+[ext_resource type="AudioStream" uid="uid://mcphd2fbf5vr" path="res://pop2.ogg" id="6_345e5"]
+[ext_resource type="AudioStream" uid="uid://kv1u0alwyikw" path="res://pop3.ogg" id="7_0jgpu"]
+[ext_resource type="AudioStream" uid="uid://dakocpiy731tn" path="res://pop4.ogg" id="8_hk8xy"]
+[ext_resource type="AudioStream" uid="uid://lt5jrebcl5fj" path="res://nom2.ogg" id="10_885i3"]
+[ext_resource type="AudioStream" uid="uid://7w0gmgnydver" path="res://nom3.ogg" id="11_8wgoc"]
+[ext_resource type="AudioStream" uid="uid://bqkpsgffhcn4v" path="res://nom4.ogg" id="12_3plc0"]
+[ext_resource type="AudioStream" uid="uid://cw3vw2woplfy4" path="res://nom5.ogg" id="13_gx10u"]
+[ext_resource type="AudioStream" uid="uid://drudtnqn1667w" path="res://tcdeath.ogg" id="14_a3jn7"]
+[ext_resource type="AudioStream" uid="uid://niscx4f037bc" path="res://tcdeath2.ogg" id="15_tr3a4"]
+[ext_resource type="AudioStream" uid="uid://dovq4qlnmkq7j" path="res://tcdeath3.ogg" id="16_vqllh"]
+[ext_resource type="AudioStream" uid="uid://8dl8it1qiqw0" path="res://idle.ogg" id="17_mh4do"]
+[ext_resource type="AudioStream" uid="uid://3vejcthpeiot" path="res://idle2.ogg" id="18_o6ikg"]
+[ext_resource type="AudioStream" uid="uid://dx8lfek6aqnrv" path="res://idle3.ogg" id="19_n1jk8"]
+[ext_resource type="AudioStream" uid="uid://bk3h3l6v3tajg" path="res://idle4.ogg" id="20_evs5w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ai215"]
+radius = 4.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gx8w8"]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("5_d7uur")
+stream_1/stream = ExtResource("6_345e5")
+stream_2/stream = ExtResource("7_0jgpu")
+stream_3/stream = ExtResource("8_hk8xy")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8hhb7"]
+random_pitch = 1.2
+streams_count = 5
+stream_0/stream = ExtResource("6_8ujbe")
+stream_1/stream = ExtResource("10_885i3")
+stream_2/stream = ExtResource("11_8wgoc")
+stream_3/stream = ExtResource("12_3plc0")
+stream_3/weight = 0.05
+stream_4/stream = ExtResource("13_gx10u")
+stream_4/weight = 0.05
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8skqi"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("14_a3jn7")
+stream_1/stream = ExtResource("15_tr3a4")
+stream_2/stream = ExtResource("16_vqllh")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ri78x"]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("17_mh4do")
+stream_1/stream = ExtResource("18_o6ikg")
+stream_2/stream = ExtResource("19_n1jk8")
+stream_2/weight = 0.01
+stream_3/stream = ExtResource("20_evs5w")
+
+[node name="TinyCreature" type="RigidBody2D"]
+z_index = 4095
+y_sort_enabled = true
+mass = 0.001
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("2_qlq18")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_qiaxk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ai215")
+
+[node name="HitBox" parent="." instance=ExtResource("3_tj3ar")]
+collision_mask = 16
+
+[node name="HurtBox" parent="." instance=ExtResource("4_4a14p")]
+scale = Vector2(0.5, 0.5)
+
+[node name="PopSoundStream" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_gx8w8")
+
+[node name="NomSoundStream" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_8hhb7")
+
+[node name="DeathSoundStream" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_8skqi")
+
+[node name="IdleSoundStream" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ri78x")

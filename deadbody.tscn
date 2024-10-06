@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhsy4bv6qiuwk"]
+
+[ext_resource type="Texture2D" uid="uid://cuwr7kusp3npb" path="res://deadbody.png" id="1_kp5fk"]
+[ext_resource type="Script" path="res://deadbody.gd" id="2_27k1b"]
+[ext_resource type="Script" path="res://hurt_box.gd" id="3_nvdfb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uoinf"]
+radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p4h8r"]
+radius = 12.1655
+
+[node name="Deadbody" type="RigidBody2D"]
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("2_27k1b")
+
+[node name="HurtBox" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("3_nvdfb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(1, 2)
+shape = SubResource("CircleShape2D_uoinf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_p4h8r")
+
+[node name="Deadbody" type="Sprite2D" parent="."]
+position = Vector2(-1, 1)
+texture = ExtResource("1_kp5fk")
