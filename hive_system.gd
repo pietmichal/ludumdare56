@@ -5,7 +5,10 @@ signal tc_bite()
 
 var tinyCreatureScene = preload("res://tiny_creature.tscn")
 
+var playerPosition: Vector2 = Vector2(0,0)
+
 var bitesLeft = 3
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Hive.tc_bite.connect(on_bite)
@@ -13,9 +16,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	var creatures = get_tree().get_nodes_in_group("TinyCreatures") as Array[TinyCreature]
+	print(creatures.size(), " fps:", Engine.get_frames_per_second())
 	# debug stuff
 	if Input.is_action_just_pressed("spawnTC"): 
-		for i in range(0, 10):
+		for i in range(0, 100):
 			spawn_tiny_creature()
 
 func on_bite() -> void:

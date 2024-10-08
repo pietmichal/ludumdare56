@@ -18,7 +18,7 @@ func _ready() -> void:
 	
 	spawnTimer.timeout.connect(spawn)
 	spawnTimer.start(10)
-		
+	
 	deadbodySpawnTimer.timeout.connect(spawn_deadbody)
 	deadbodySpawnTimer.start(10)
 

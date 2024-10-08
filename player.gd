@@ -26,3 +26,6 @@ func _process(delta: float) -> void:
 	if speedVectorToApply.x == speedVectorToApply.y: speedVectorToApply /= sqrt(2)
 	
 	position += speedVectorToApply * delta;
+	
+	Hive.playerPosition = position
+	

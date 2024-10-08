@@ -2,6 +2,7 @@ class_name HitBox
 extends Area2D
 
 var isActive: bool = false
+@onready var parent = get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,6 +13,6 @@ func _process(delta: float) -> void:
 	if isActive:
 		isActive = false
 		for area in get_overlapping_areas(): 
-			if area is HurtBox and area.get_parent() != get_parent():
+			if area.parent != parent:
 					area.on_hit(1)
-					get_parent().on_attack()
+					parent.on_attack()

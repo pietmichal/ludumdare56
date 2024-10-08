@@ -1,5 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://c13t0agej86kh"]
+[gd_scene load_steps=25 format=3 uid="uid://c13t0agej86kh"]
 
+[ext_resource type="Texture2D" uid="uid://ci4m4wxcnrby1" path="res://tc1.png" id="2_qiaxk"]
 [ext_resource type="Script" path="res://tiny_creature.gd" id="2_qlq18"]
 [ext_resource type="PackedScene" uid="uid://dq60k4c80pq3i" path="res://hit_box.tscn" id="3_tj3ar"]
 [ext_resource type="PackedScene" uid="uid://hayphtg0rjj5" path="res://hurt_box.tscn" id="4_4a14p"]
@@ -59,6 +60,10 @@ stream_3/stream = ExtResource("20_evs5w")
 z_index = 4095
 y_sort_enabled = true
 script = ExtResource("2_qlq18")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_qiaxk")
 
 [node name="HitBox" parent="." instance=ExtResource("3_tj3ar")]
 collision_mask = 16
